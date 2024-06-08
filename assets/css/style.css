@@ -67,6 +67,35 @@ h6 {
   opacity: 1;
 }
 
+#fab {
+  position: fixed;
+  top: 20%;
+  right: 20px;
+  z-index: 1000; /* Ensure it stays on top of other content */
+  background: none;
+  border: none;
+  cursor: pointer;
+  animation: floating 1s ease-in-out infinite alternate; /* Add floating animation */
+}
+
+@keyframes floating {
+  from {
+      transform: translateY(0);
+  }
+  to {
+      transform: translateY(10px);
+  }
+}
+
+.open-icon {
+  display: inline-block;
+}
+
+.close-icon {
+  display: none;
+}
+
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
