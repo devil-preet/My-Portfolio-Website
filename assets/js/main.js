@@ -41,6 +41,14 @@
     el.addEventListener('scroll', listener)
   }
 
+
+  // remsume downloader
+  document.getElementById('downloadBtn').addEventListener('click', function() {
+    window.location.href = 'https://docs.google.com/document/d/1SWcOjbovfT7EXLykwCHEhmQLC8J9QQMMaHbg1Dj0VdE/export?format=pdf';
+});
+
+
+  //vide player container
   const videoContainers = document.querySelectorAll('.video-container');
 
   videoContainers.forEach(container => {
