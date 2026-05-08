@@ -1,497 +1,1348 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anmolpreet Kaur — Project Manager & Product Owner</title>
+<meta name="description" content="Anmolpreet Kaur — Project Manager, Business Analyst & Product Owner. SaaS delivery expert open to remote opportunities worldwide."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════════════════
+   TOKENS
+════════════════════════════════════════ */
+:root{
+  --ink:       #05091a;
+  --ink2:      #0a1228;
+  --panel:     #0d1730;
+  --panel2:    #111e3a;
+  --glass:     rgba(13,23,48,.65);
+  --edge:      rgba(96,165,250,.13);
+  --edge2:     rgba(96,165,250,.32);
+  --blue:      #3b82f6;
+  --blue-hi:   #60a5fa;
+  --blue-glow: rgba(59,130,246,.18);
+  --amber:     #f59e0b;
+  --amber-lo:  rgba(245,158,11,.08);
+  --white:     #eef3ff;
+  --ghost:     #7a94bf;
+  --ghost2:    #4e6a96;
+  --ff-d:      'Playfair Display',Georgia,serif;
+  --ff-b:      'Outfit',sans-serif;
+  --ease:      cubic-bezier(.4,0,.2,1);
+  --spring:    cubic-bezier(.34,1.56,.64,1);
+  --dur:       .4s;
+}
 
-  <title>Anmolpreet Kaur - Developer</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+/* ════════════════════════════════════════
+   RESET
+════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--white);
+  font-family:var(--ff-b);
+  font-weight:300;
+  line-height:1.75;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
 
-  
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+/* ════════════════════════════════════════
+   CURSOR
+════════════════════════════════════════ */
+#cur,#cur-r{
+  position:fixed;border-radius:50%;pointer-events:none;
+  transform:translate(-50%,-50%);z-index:9999;
+  transition:width .2s var(--ease),height .2s var(--ease);
+}
+#cur{width:8px;height:8px;background:var(--blue-hi);mix-blend-mode:screen}
+#cur-r{
+  width:30px;height:30px;
+  border:1px solid rgba(96,165,250,.45);
+  transition:width .28s var(--ease),height .28s var(--ease),border-color .28s,transform .1s linear;
+}
+@media(hover:none){#cur,#cur-r{display:none}}
 
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+/* ════════════════════════════════════════
+   CANVAS
+════════════════════════════════════════ */
+#bg{position:fixed;inset:0;z-index:0;opacity:.55;pointer-events:none}
 
-  
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+/* ════════════════════════════════════════
+   NOISE
+════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.022;pointer-events:none;z-index:1;
+}
 
-  
-  <link href="assets/css/style.css" rel="stylesheet">
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 5vw;
+  transition:background .5s var(--ease),backdrop-filter .5s,box-shadow .5s;
+}
+nav.stuck{
+  background:rgba(5,9,26,.82);
+  backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:0 1px 0 var(--edge);
+}
+.n-logo{
+  font-family:var(--ff-d);font-size:1.15rem;font-weight:400;
+  letter-spacing:.04em;
+  display:flex;align-items:center;gap:.5rem;
+}
+.n-logo-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--blue-hi);
+  box-shadow:0 0 10px var(--blue);
+  animation:blink 2.8s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.n-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.n-links a{
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ghost);font-weight:500;
+  position:relative;transition:color .3s;
+}
+.n-links a::after{
+  content:'';position:absolute;left:0;bottom:-3px;
+  width:0;height:1px;background:var(--blue-hi);
+  transition:width .3s var(--ease);
+}
+.n-links a:hover{color:var(--white)}
+.n-links a:hover::after{width:100%}
+.n-cta{
+  padding:.5rem 1.3rem;border-radius:4px;
+  border:1px solid var(--edge2);
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--blue-hi);font-weight:500;
+  background:var(--blue-glow);
+  transition:all .3s var(--ease);
+}
+.n-cta:hover{
+  background:var(--blue);color:#fff;border-color:var(--blue);
+  box-shadow:0 0 20px rgba(59,130,246,.35);
+  transform:translateY(-1px);
+}
+.n-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.n-hamburger span{width:22px;height:1.5px;background:var(--ghost);border-radius:2px;transition:.3s}
+#mobile-menu{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(5,9,26,.97);backdrop-filter:blur(24px);
+  z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+}
+#mobile-menu.open{display:flex}
+#mobile-menu a{
+  font-family:var(--ff-d);font-size:2rem;font-weight:300;
+  color:var(--ghost);transition:color .3s;
+}
+#mobile-menu a:hover{color:var(--white)}
+#mob-close{
+  position:absolute;top:1.5rem;right:5vw;
+  font-size:1.5rem;color:var(--ghost);cursor:pointer;
+}
 
- 
+/* ════════════════════════════════════════
+   SECTION WRAPPER
+════════════════════════════════════════ */
+section{position:relative;z-index:2}
+.wrap{max-width:1080px;margin:0 auto;padding:0 5vw}
+
+/* ════════════════════════════════════════
+   REVEAL ANIMATIONS
+════════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(36px);
+  transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv.on{opacity:1;transform:none}
+
+.rg > *{opacity:0;transform:translateY(26px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rg.on > *:nth-child(1){opacity:1;transform:none;transition-delay:.04s}
+.rg.on > *:nth-child(2){opacity:1;transform:none;transition-delay:.13s}
+.rg.on > *:nth-child(3){opacity:1;transform:none;transition-delay:.22s}
+.rg.on > *:nth-child(4){opacity:1;transform:none;transition-delay:.31s}
+.rg.on > *:nth-child(5){opacity:1;transform:none;transition-delay:.40s}
+.rg.on > *:nth-child(6){opacity:1;transform:none;transition-delay:.49s}
+.rg.on > *:nth-child(7){opacity:1;transform:none;transition-delay:.58s}
+.rg.on > *:nth-child(8){opacity:1;transform:none;transition-delay:.67s}
+
+/* ════════════════════════════════════════
+   SECTION LABEL
+════════════════════════════════════════ */
+.sec-label{
+  display:flex;align-items:center;gap:1.2rem;margin-bottom:4rem;
+}
+.sec-num{
+  font-family:var(--ff-d);font-size:.82rem;font-style:italic;
+  color:var(--blue-hi);letter-spacing:.05em;
+}
+.sec-h{
+  font-family:var(--ff-d);
+  font-size:clamp(1.8rem,3.2vw,2.6rem);
+  font-weight:300;letter-spacing:-.01em;
+}
+.sec-rule{flex:1;height:1px;background:linear-gradient(to right,var(--edge),transparent)}
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;padding:130px 5vw 90px;
+  position:relative;overflow:hidden;
+}
+/* grid lines decoration */
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(to right,rgba(96,165,250,.04) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(96,165,250,.04) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent);
+}
+/* glow orb */
+.hero-orb{
+  position:absolute;right:-10vw;top:-10vh;
+  width:55vw;height:55vw;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.09) 0%,transparent 70%);
+  pointer-events:none;
+  animation:orb-float 8s ease-in-out infinite;
+}
+@keyframes orb-float{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-30px) scale(1.04)}
+}
+.hero-orb2{
+  position:absolute;left:-8vw;bottom:-8vh;
+  width:35vw;height:35vw;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,158,11,.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.4rem 1rem;border-radius:30px;
+  border:1px solid var(--edge2);
+  background:var(--blue-glow);
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--blue-hi);font-weight:500;margin-bottom:1.8rem;
+  width:fit-content;
+  opacity:0;animation:fadeUp .6s .2s var(--ease) forwards;
+}
+.hero-tag-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#22c55e;box-shadow:0 0 8px #22c55e;
+  animation:blink 2s infinite;
+}
+.hero-name{
+  font-family:var(--ff-d);
+  font-size:clamp(3.8rem,8vw,7rem);
+  font-weight:300;line-height:1.0;
+  letter-spacing:-.02em;
+  opacity:0;animation:fadeUp .8s .35s var(--ease) forwards;
+}
+.hero-name .line2{
+  font-style:italic;color:var(--blue-hi);
+  display:block;
+}
+.hero-sub{
+  font-family:var(--ff-d);
+  font-size:clamp(1rem,2vw,1.45rem);
+  font-weight:300;font-style:italic;
+  color:var(--ghost);margin-top:.8rem;
+  opacity:0;animation:fadeUp .7s .55s var(--ease) forwards;
+}
+.hero-desc{
+  max-width:520px;font-size:.95rem;
+  color:var(--ghost);margin-top:2rem;line-height:1.85;
+  opacity:0;animation:fadeUp .7s .7s var(--ease) forwards;
+}
+.hero-btns{
+  display:flex;gap:1rem;margin-top:2.8rem;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .7s .85s var(--ease) forwards;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.75rem 1.9rem;border-radius:5px;
+  font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:500;transition:all .35s var(--ease);cursor:pointer;
+  position:relative;overflow:hidden;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.08),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.btn:hover::before{opacity:1}
+.btn-p{
+  background:var(--blue);color:#fff;
+  box-shadow:0 4px 20px rgba(59,130,246,.3);
+}
+.btn-p:hover{
+  background:var(--blue-hi);
+  box-shadow:0 6px 30px rgba(59,130,246,.5);
+  transform:translateY(-3px);
+}
+.btn-o{
+  border:1px solid var(--edge2);color:var(--ghost);
+  background:transparent;
+}
+.btn-o:hover{
+  border-color:var(--blue-hi);color:var(--white);
+  background:var(--blue-glow);transform:translateY(-3px);
+}
+.hero-stats{
+  display:flex;gap:3rem;margin-top:3.5rem;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .7s 1s var(--ease) forwards;
+}
+.hero-stat{}
+.hs-num{
+  font-family:var(--ff-d);font-size:2rem;font-weight:300;
+  color:var(--blue-hi);line-height:1;
+}
+.hs-label{
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ghost2);margin-top:.3rem;
+}
+.hero-scroll{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  opacity:0;animation:fadeIn 1s 1.4s forwards;
+  color:var(--ghost2);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+}
+.scroll-line{
+  width:1px;height:40px;
+  background:linear-gradient(to bottom,var(--blue-hi),transparent);
+  animation:scroll-drop 2s ease-in-out infinite;
+}
+@keyframes scroll-drop{
+  0%{transform:scaleY(0);transform-origin:top}
+  50%{transform:scaleY(1);transform-origin:top}
+  51%{transform:scaleY(1);transform-origin:bottom}
+  100%{transform:scaleY(0);transform-origin:bottom}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:.7}}
+
+/* ════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════ */
+#about{padding:130px 0}
+.about-grid{
+  display:grid;grid-template-columns:1.05fr 1fr;
+  gap:5rem;align-items:start;
+}
+.about-lead{
+  font-family:var(--ff-d);font-size:clamp(1.25rem,2vw,1.55rem);
+  font-weight:300;line-height:1.55;margin-bottom:1.8rem;
+  color:var(--white);
+}
+.about-lead em{font-style:italic;color:var(--blue-hi)}
+.about-body p{
+  font-size:.93rem;color:var(--ghost);
+  line-height:1.9;margin-bottom:1rem;
+}
+.about-chips{
+  display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem;
+}
+.chip{
+  padding:.3rem .85rem;border-radius:20px;
+  border:1px solid var(--edge);color:var(--ghost);
+  font-size:.75rem;letter-spacing:.04em;
+  background:var(--panel);
+  transition:all .3s;
+}
+.chip:hover{border-color:var(--blue-hi);color:var(--white);background:var(--blue-glow)}
+
+.about-cards{display:flex;flex-direction:column;gap:1rem}
+.acard{
+  background:var(--panel);
+  border:1px solid var(--edge);border-radius:10px;
+  padding:1.6rem 1.4rem;
+  display:flex;align-items:center;gap:1.4rem;
+  transition:border-color .3s,transform .3s var(--spring),box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.acard::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:linear-gradient(to bottom,var(--blue),transparent);
+  border-radius:3px 0 0 3px;
+  transform:scaleY(0);transform-origin:top;
+  transition:transform .4s var(--ease);
+}
+.acard:hover{border-color:var(--blue);transform:translateX(6px);box-shadow:-4px 0 24px rgba(59,130,246,.1)}
+.acard:hover::before{transform:scaleY(1)}
+.acard-icon{
+  font-size:1.5rem;width:48px;height:48px;border-radius:10px;
+  background:var(--blue-glow);border:1px solid var(--edge);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.acard-num{
+  font-family:var(--ff-d);font-size:1.9rem;font-weight:300;
+  color:var(--blue-hi);line-height:1;
+}
+.acard-text{font-size:.78rem;color:var(--ghost);letter-spacing:.03em}
+
+/* ════════════════════════════════════════
+   SKILLS
+════════════════════════════════════════ */
+#skills{
+  padding:130px 0;
+  background:linear-gradient(180deg,var(--ink2) 0%,var(--panel) 50%,var(--ink2) 100%);
+}
+.skills-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;
+}
+.scard{
+  background:var(--ink);border:1px solid var(--edge);
+  border-radius:12px;padding:2rem 1.8rem;
+  transition:border-color .3s,box-shadow .4s,transform .35s var(--spring);
+  position:relative;overflow:hidden;
+}
+.scard::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(59,130,246,.07),transparent 60%);
+  opacity:0;transition:opacity .4s;
+}
+.scard:hover{
+  border-color:var(--blue);
+  box-shadow:0 8px 40px rgba(59,130,246,.12),0 0 0 1px rgba(59,130,246,.12);
+  transform:translateY(-6px);
+}
+.scard:hover::after{opacity:1}
+.scard-top{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;
+}
+.scard-icon{
+  width:42px;height:42px;border-radius:10px;
+  background:var(--blue-glow);border:1px solid var(--edge2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.scard h3{
+  font-family:var(--ff-d);font-size:1.05rem;font-weight:400;
+  line-height:1.3;
+}
+.scard ul{list-style:none}
+.scard li{
+  font-size:.83rem;color:var(--ghost);
+  padding:.4rem 0;
+  border-bottom:1px solid rgba(96,165,250,.06);
+  display:flex;align-items:flex-start;gap:.7rem;
+}
+.scard li:last-child{border-bottom:none}
+.scard li::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--blue);flex-shrink:0;margin-top:.55rem;
+}
+
+/* ════════════════════════════════════════
+   EXPERIENCE
+════════════════════════════════════════ */
+#experience{padding:130px 0}
+.exp-wrap{
+  background:var(--panel);border:1px solid var(--edge);
+  border-radius:16px;padding:3rem 2.8rem;
+  position:relative;overflow:hidden;
+}
+.exp-wrap::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.08),transparent 70%);
+  pointer-events:none;
+}
+.exp-header{
+  display:flex;align-items:flex-start;
+  justify-content:space-between;margin-bottom:2.5rem;
+  gap:2rem;flex-wrap:wrap;
+}
+.exp-role{
+  font-family:var(--ff-d);font-size:clamp(1.5rem,2.5vw,2rem);
+  font-weight:300;line-height:1.2;
+}
+.exp-co{
+  font-family:var(--ff-d);font-size:1.05rem;
+  font-style:italic;color:var(--blue-hi);margin-top:.3rem;
+}
+.exp-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.5rem 1.1rem;border-radius:30px;
+  border:1px solid rgba(34,197,94,.25);
+  background:rgba(34,197,94,.07);
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#4ade80;font-weight:500;white-space:nowrap;
+  flex-shrink:0;
+}
+.exp-badge::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:#22c55e;box-shadow:0 0 8px #22c55e;
+  animation:blink 2s infinite;
+}
+.exp-meta{
+  font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ghost2);margin-bottom:2.5rem;
+  display:flex;align-items:center;gap:.8rem;
+}
+.exp-meta::before{
+  content:'';width:20px;height:1px;background:var(--blue);
+}
+.exp-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:2rem;border-top:1px solid var(--edge);padding-top:2.2rem;
+}
+.exp-group h4{
+  font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--blue-hi);margin-bottom:1rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.exp-group h4::before{
+  content:'';width:14px;height:1px;background:var(--blue);
+}
+.exp-group ul{list-style:none}
+.exp-group li{
+  font-size:.85rem;color:var(--ghost);
+  padding:.38rem 0;border-bottom:1px solid rgba(96,165,250,.05);
+  display:flex;gap:.6rem;align-items:flex-start;
+}
+.exp-group li::before{content:'›';color:var(--blue-hi);font-size:1rem;flex-shrink:0;margin-top:-.05rem}
+
+/* project cards inside exp */
+.proj-section{margin-top:2.5rem;border-top:1px solid var(--edge);padding-top:2.2rem}
+.proj-title{
+  font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--blue-hi);margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.proj-title::before{content:'';width:14px;height:1px;background:var(--blue)}
+.proj-apps{
+  display:flex;flex-wrap:wrap;gap:.7rem;
+}
+.proj-app{
+  padding:.45rem 1.1rem;border-radius:6px;
+  border:1px solid var(--edge);background:var(--ink);
+  font-size:.8rem;color:var(--ghost);
+  transition:all .3s;display:flex;align-items:center;gap:.5rem;
+}
+.proj-app::before{content:'◈';color:var(--blue);font-size:.65rem}
+.proj-app:hover{border-color:var(--blue-hi);color:var(--white);background:var(--blue-glow)}
+
+/* ════════════════════════════════════════
+   ACHIEVEMENTS
+════════════════════════════════════════ */
+#achievements{
+  padding:130px 0;
+  background:linear-gradient(180deg,var(--ink) 0%,var(--ink2) 100%);
+}
+.ach-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;
+}
+.ach-card{
+  background:var(--panel);border:1px solid var(--edge);
+  border-radius:12px;padding:1.8rem 1.6rem;
+  transition:border-color .3s,transform .35s var(--spring),box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.ach-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:2px;background:linear-gradient(to right,var(--blue),var(--blue-hi));
+  transform:scaleX(0);transition:transform .4s var(--ease);
+}
+.ach-card:hover{
+  border-color:var(--blue);
+  transform:translateY(-5px);
+  box-shadow:0 12px 40px rgba(59,130,246,.12);
+}
+.ach-card:hover::after{transform:scaleX(1)}
+.ach-icon{
+  font-size:1.4rem;width:46px;height:46px;border-radius:10px;
+  background:var(--blue-glow);border:1px solid var(--edge);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.2rem;
+  transition:transform .35s var(--spring);
+}
+.ach-card:hover .ach-icon{transform:scale(1.1)}
+.ach-card h3{
+  font-family:var(--ff-d);font-size:1rem;font-weight:400;
+  margin-bottom:.6rem;line-height:1.35;
+}
+.ach-card p{font-size:.83rem;color:var(--ghost);line-height:1.75}
+
+/* ════════════════════════════════════════
+   TOOLS
+════════════════════════════════════════ */
+#tools{padding:130px 0}
+.tools-label-row{
+  display:flex;align-items:center;gap:1rem;
+  margin-bottom:1.4rem;
+}
+.tools-cat{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);font-weight:500;
+}
+.tools-cat-line{flex:1;height:1px;background:linear-gradient(to right,rgba(245,158,11,.2),transparent)}
+.tools-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:2.5rem}
+.tpill{
+  padding:.5rem 1.15rem;border-radius:40px;
+  border:1px solid var(--edge);background:var(--panel);
+  font-size:.8rem;color:var(--ghost);letter-spacing:.03em;
+  transition:all .3s var(--spring);cursor:default;
+}
+.tpill:hover{
+  border-color:var(--blue-hi);color:var(--white);
+  background:var(--blue-glow);transform:translateY(-3px) scale(1.03);
+}
+.tpill.hi{border-color:rgba(59,130,246,.35);color:var(--blue-hi);background:var(--blue-glow)}
+.tpill.hi:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tpill.amber{border-color:rgba(245,158,11,.25);color:#fbbf24;background:var(--amber-lo)}
+.tpill.amber:hover{background:var(--amber);color:#000;border-color:var(--amber)}
+
+/* ════════════════════════════════════════
+   ROLES MARQUEE
+════════════════════════════════════════ */
+.marquee-wrap{
+  padding:2.2rem 0;
+  border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);
+  overflow:hidden;position:relative;background:var(--panel2);
+}
+.marquee-wrap::before,.marquee-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;
+}
+.marquee-wrap::before{left:0;background:linear-gradient(to right,var(--panel2),transparent)}
+.marquee-wrap::after{right:0;background:linear-gradient(to left,var(--panel2),transparent)}
+.marquee-track{
+  display:flex;gap:2.5rem;width:max-content;
+  animation:marquee 20s linear infinite;
+}
+.marquee-item{
+  display:flex;align-items:center;gap:.8rem;white-space:nowrap;
+  font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ghost2);font-weight:500;
+}
+.marquee-item span{color:var(--blue-hi)}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--blue);flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════ */
+#contact{padding:130px 0 160px}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;
+}
+.contact-left h2{
+  font-family:var(--ff-d);font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:300;line-height:1.2;margin-bottom:1.2rem;
+}
+.contact-left h2 em{font-style:italic;color:var(--blue-hi)}
+.contact-left p{font-size:.92rem;color:var(--ghost);line-height:1.85;margin-bottom:1.8rem}
+.contact-right{display:flex;flex-direction:column;gap:.9rem}
+.c-link{
+  display:flex;align-items:center;gap:1.1rem;
+  padding:1.1rem 1.3rem;border-radius:10px;
+  border:1px solid var(--edge);background:var(--panel);
+  transition:all .35s var(--spring);position:relative;overflow:hidden;
+}
+.c-link::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:0;background:linear-gradient(to right,var(--blue-glow),transparent);
+  transition:width .4s var(--ease);
+}
+.c-link:hover{border-color:var(--blue-hi);transform:translateX(5px)}
+.c-link:hover::before{width:100%}
+.c-icon{
+  width:40px;height:40px;border-radius:9px;
+  background:var(--blue-glow);border:1px solid var(--edge2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;position:relative;z-index:1;
+}
+.c-info{flex:1;position:relative;z-index:1}
+.c-lbl{
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ghost2);margin-bottom:.15rem;
+}
+.c-val{font-size:.9rem;color:var(--white)}
+.c-arr{
+  color:var(--blue-hi);font-size:.9rem;
+  position:relative;z-index:1;
+  transition:transform .3s var(--spring);
+}
+.c-link:hover .c-arr{transform:translateX(4px)}
+
+/* availability box */
+.avail-box{
+  margin-top:2rem;
+  padding:1.4rem;border-radius:10px;
+  border:1px solid rgba(34,197,94,.2);
+  background:rgba(34,197,94,.05);
+}
+.avail-box h4{
+  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#4ade80;margin-bottom:.5rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.avail-box h4::before{
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:#22c55e;box-shadow:0 0 8px #22c55e;
+  animation:blink 2s infinite;
+}
+.avail-box p{font-size:.83rem;color:var(--ghost)}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{
+  border-top:1px solid var(--edge);
+  padding:2rem 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+  position:relative;z-index:2;
+}
+.foot-logo{font-family:var(--ff-d);font-size:1.05rem;color:var(--white)}
+footer p{font-size:.75rem;color:var(--ghost2)}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:900px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
+  .skills-grid,.ach-grid{grid-template-columns:1fr 1fr}
+  .exp-grid{grid-template-columns:1fr}
+  .n-links{display:none}
+  .n-hamburger{display:flex}
+  .hero-stats{gap:2rem}
+}
+@media(max-width:580px){
+  .skills-grid,.ach-grid{grid-template-columns:1fr}
+  .exp-wrap{padding:2rem 1.5rem}
+  .hero-name{font-size:clamp(3rem,14vw,4.5rem)}
+}
+
+/* ════════════════════════════════════════
+   PROGRESS BAR
+════════════════════════════════════════ */
+#progress{
+  position:fixed;top:0;left:0;height:2px;
+  background:linear-gradient(to right,var(--blue),var(--blue-hi));
+  z-index:200;transition:width .1s linear;
+  box-shadow:0 0 8px var(--blue);
+}
+
+/* ════════════════════════════════════════
+   BACK TO TOP
+════════════════════════════════════════ */
+#btt{
+  position:fixed;bottom:2rem;right:2rem;
+  width:42px;height:42px;border-radius:50%;
+  background:var(--blue);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;z-index:50;
+  opacity:0;transform:translateY(10px);
+  transition:all .3s var(--spring);
+  box-shadow:0 4px 20px rgba(59,130,246,.4);
+  cursor:pointer;border:none;
+}
+#btt.show{opacity:1;transform:none}
+#btt:hover{background:var(--blue-hi);transform:translateY(-3px);box-shadow:0 8px 28px rgba(59,130,246,.5)}
+</style>
 </head>
-
 <body>
 
-  
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-r"></div>
 
-  
-  <header id="header">
-    <div class="d-flex flex-column" data-aos="flip-left">
+<!-- PROGRESS BAR -->
+<div id="progress"></div>
 
-      <div class="profile">
-        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Anmolpreet Kaur</a></h1>
-        <div class="social-links mt-3 text-center">
-     <a href="https://www.linkedin.com/in/anmolpreet-kaur-chouhan" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://github.com/devil-preet" class="linkedin" target="_blank"><i class="bx bxl-github"></i></a>
-          <a href="mailto:anmolpreet.kaur.official@gmail.com?" class="email"><i class="bx bx-envelope"></i></a>
+<!-- CANVAS PARTICLES -->
+<canvas id="bg"></canvas>
+
+<!-- BACK TO TOP -->
+<button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="n-logo">
+    <div class="n-logo-dot"></div>
+    Anmolpreet Kaur
+  </div>
+  <ul class="n-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact" class="n-cta">Hire Me</a></li>
+  </ul>
+  <div class="n-hamburger" id="ham" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <div id="mob-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">✕</div>
+  <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+  <a href="#skills" onclick="document.getElementById('mobile-menu').classList.remove('open')">Skills</a>
+  <a href="#experience" onclick="document.getElementById('mobile-menu').classList.remove('open')">Experience</a>
+  <a href="#achievements" onclick="document.getElementById('mobile-menu').classList.remove('open')">Achievements</a>
+  <a href="#tools" onclick="document.getElementById('mobile-menu').classList.remove('open')">Tools</a>
+  <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-orb2"></div>
+  <div class="wrap">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      Available for Remote Opportunities
+    </div>
+    <h1 class="hero-name">
+      Anmolpreet<br>
+      <span class="line2">Kaur</span>
+    </h1>
+    <p class="hero-sub">Project Manager · Business Analyst · Product Owner</p>
+    <p class="hero-desc">
+      Detail-oriented PM with hands-on SaaS delivery experience across web &amp; mobile platforms.
+      Specialising in Agile coordination, Jira governance, stakeholder communication, and end-to-end delivery tracking.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-p">Let's Connect →</a>
+      <a href="#experience" class="btn btn-o">View Experience</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hs-num">5+</div>
+        <div class="hs-label">App Types Delivered</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num">360°</div>
+        <div class="hs-label">Delivery Ownership</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num">100%</div>
+        <div class="hs-label">Agile Methodology</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label rv">
+      <span class="sec-num">01 /</span>
+      <h2 class="sec-h">About Me</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-body rv">
+        <p class="about-lead">I bridge the gap between <em>business vision</em> and technical delivery — ensuring every sprint ends with clarity, not confusion.</p>
+        <p>I'm a Project Manager based in India with deep experience supporting end-to-end delivery of a large-scale Real Estate SaaS platform — spanning CRM systems, owner/tenant portals, Android &amp; iOS apps, and inspection tools.</p>
+        <p>My work lives at the intersection of business requirements, engineering teams, and QA. I own the full cycle: gathering requirements, writing acceptance criteria, managing Jira backlogs, validating workflows, and coordinating deployments — all while keeping stakeholders consistently informed.</p>
+        <p>Holding a Bachelor of Computer Applications (BCA) gives me a technical foundation that helps me communicate precisely with developers and spot gaps early.</p>
+        <div class="about-chips">
+          <span class="chip">Requirement Gathering</span>
+          <span class="chip">User Story Writing</span>
+          <span class="chip">Jira Administration</span>
+          <span class="chip">UAT Validation</span>
+          <span class="chip">Agile / Scrum</span>
+          <span class="chip">Stakeholder Management</span>
+          <span class="chip">SaaS Delivery</span>
+          <span class="chip">BCA Graduate</span>
         </div>
       </div>
+      <div class="about-cards rg">
+        <div class="acard">
+          <div class="acard-icon">🏗️</div>
+          <div>
+            <div class="acard-num">5+</div>
+            <div class="acard-text">Interconnected application types delivered on a single SaaS platform</div>
+          </div>
+        </div>
+        <div class="acard">
+          <div class="acard-icon">🔄</div>
+          <div>
+            <div class="acard-num">End-to-End</div>
+            <div class="acard-text">From requirements to deployment — full ownership of the delivery lifecycle</div>
+          </div>
+        </div>
+        <div class="acard">
+          <div class="acard-icon">👥</div>
+          <div>
+            <div class="acard-num">3-Way</div>
+            <div class="acard-text">Client product teams, development, and QA — all aligned and in sync</div>
+          </div>
+        </div>
+        <div class="acard">
+          <div class="acard-icon">🌐</div>
+          <div>
+            <div class="acard-num">Remote-Ready</div>
+            <div class="acard-text">Structured async workflows, clear documentation, timezone-adaptable communication</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <nav id="navbar" class="nav-menu navbar">
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-label rv">
+      <span class="sec-num">02 /</span>
+      <h2 class="sec-h">Core Skills</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="skills-grid rg">
+      <div class="scard">
+        <div class="scard-top">
+          <div class="scard-icon">📋</div>
+          <h3>Business Analysis</h3>
+        </div>
         <ul>
-          <div data-aos="flip-left"><li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li></div>
-          <div data-aos="flip-left"><li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li></div>
-          <div data-aos="flip-left"><li><a href="#skills" class="nav-link scrollto"><i class="bx bx-plus"></i> <span>Skills</span></a></li></div>
-          <div data-aos="flip-left"><li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li></div>
-          <div data-aos="flip-left"><li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-link"></i> <span>Portfolio</span></a></li></div>
-          <div data-aos="flip-left"><li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li></div>
-          <!-- <div data-aos="flip-left"><li><button class="floating-btn" id="downloadBtn">
-            Download Resume
-        </button></li></div> -->
+          <li>Requirement Gathering &amp; Analysis</li>
+          <li>User Stories &amp; Acceptance Criteria</li>
+          <li>Functional Requirement Clarification</li>
+          <li>Change Request Tracking</li>
+          <li>UAT Support &amp; Workflow Validation</li>
         </ul>
-      </nav>
+      </div>
+      <div class="scard">
+        <div class="scard-top">
+          <div class="scard-icon">🔄</div>
+          <h3>Project &amp; Product Coordination</h3>
+        </div>
+        <ul>
+          <li>Agile Delivery Support</li>
+          <li>Backlog Management &amp; Prioritisation</li>
+          <li>Stakeholder Coordination</li>
+          <li>Delivery Tracking &amp; Status Reporting</li>
+          <li>Deployment Coordination</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="scard-top">
+          <div class="scard-icon">⚙️</div>
+          <h3>Tools &amp; Technical Fluency</h3>
+        </div>
+        <ul>
+          <li>Jira — Dashboards, JQL, Filters, Reporting</li>
+          <li>Google Sheets — ETA &amp; Delivery Tracking</li>
+          <li>Google Docs — Documentation &amp; Updates</li>
+          <li>Basic Git &amp; Deployment Workflow Awareness</li>
+          <li>SaaS Product Workflow Understanding</li>
+        </ul>
+      </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center"><video id="video-background" autoplay muted loop>
-    <source src="assets/video/background.mp4" type="video/mp4">
-  </video>
-    <div class="hero-container" data-aos="fade-up">
-      <h1>Anmolpreet Kaur</h1>
-      <p>I'm <span class="typed" data-typed-items="Web Developer, Passionate, Web Developer, Self driven"></span></p>
-      <button class="floating-btn" id="downloadBtn">
-        Download Resume <img src="assets/img/downloader.png" style="height: 40px;" alt="downloader icon">
-    </button>
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-label rv">
+      <span class="sec-num">03 /</span>
+      <h2 class="sec-h">Work Experience</h2>
+      <div class="sec-rule"></div>
     </div>
-  
-  </section>
-
-  <main id="main" data-aos="fade-up">
-
-    
-    <section id="about" class="about" data-aos="fade-up">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2 data-aos="fade-up">About</h2>
-          <p data-aos="fade-up">Software development isn't just a paycheck, it's a playground for my creativity. Lines of code aren't tasks, they're brushstrokes painting solutions and shaping experiences. Each solved problem isn't just crossed off a list, it's a victory dance fueled by passion. This portfolio showcases projects that sparked my obsession, a glimpse into a never-ending journey of learning and growth. Let's see what we can build together, not for a boss, but for the sheer joy of creation.
-          </p>
+    <div class="exp-wrap rv">
+      <div class="exp-header">
+        <div>
+          <h3 class="exp-role">Project Manager</h3>
+          <p class="exp-co">Wegile · Mohali, India</p>
         </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-4" data-aos="fade-up">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" data-aos="fade-up" alt="">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-up">
-            <h3 data-aos="fade-up">Software Developer</h3>
-            <p class="fst-italic" data-aos="fade-up" >
-              Code's not a career, it's a calling. I don't build apps, I sculpt experiences. Each project ignites a passion, not a paycheck. This portfolio shows my sparks, let's build yours together.
-            </p>
-            <div class="row" data-aos="fade-up">
-              <div class="col-lg-6" data-aos="fade-up">
-                <ul>
-                  <li data-aos="fade-up"><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>17 May 2003</span></li>
-                  
-                  <li data-aos="fade-up"><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+91 6280306207</span></li>
-                  <li data-aos="fade-up"><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Zirakpur, India</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6" data-aos="fade-up">
-                <ul>
-                  <li data-aos="fade-up"><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>21</span></li>
-                  <li data-aos="fade-up"><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Bachelors</span></li>
-                  <li data-aos="fade-up"><i class="bi bi-chevron-right"></i> <strong>Mail-ID:</strong> <span>anmolpreet.kaur.official@gmail.com</span></li>
-                </ul>
-              </div>
-            </div>
-            <div data-aos="fade-up">
-              They say software development is a grind, but for me, it's a symphony. Each problem solved is a beautiful note, each project a masterpiece in progress. This portfolio is a glimpse into my creative journey, a testament to the joy of building something new. Let's collaborate on your vision and turn it into reality.
-            </div>
-          </div>
-        </div>
-
+        <div class="exp-badge">Currently Here</div>
       </div>
-    </section>
-
-    
-    <section id="skills" class="skills section-bg" data-aos="fade-up">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2 data-aos="fade-up">Skills</h2>
-          <p data-aos="fade-up">Development isn't just a job, it's a burning curiosity. Every problem solved is a puzzle unlocked, every line of code a brushstroke on the canvas of possibility. This portfolio is a testament to my relentless pursuit of learning, a glimpse into the ever-evolving journey. Let's explore the unknown together and bring your ideas to life.
-          </p>
+      <p class="exp-meta">December 2024 – Present</p>
+      <div class="exp-grid">
+        <div class="exp-group">
+          <h4>Requirement Gathering &amp; BA</h4>
+          <ul>
+            <li>Gather &amp; clarify feature requirements through client discussions and stakeholder coordination</li>
+            <li>Create Jira tickets including user stories, epics, and bugs based on feature requests</li>
+            <li>Write acceptance criteria to ensure clarity for development and QA teams</li>
+            <li>Support requirement clarification and change request tracking</li>
+          </ul>
         </div>
-
-        <div class="row skills-content" data-aos="fade-up">
-
-          <div class="col-lg-6" data-aos="fade-up">
-
-            <div class="progress" data-aos="fade-up">
-              <span class="skill">FlutterFlow <i class="val">80%</i></span>
-              <div class="progress-bar-wrap" data-aos="fade-up">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-up">
-              <span class="skill">Java <i class="val">85%</i></span>
-              <div class="progress-bar-wrap" data-aos="fade-up">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-up">
-              <span class="skill">Figma <i class="val">75%</i></span>
-              <div class="progress-bar-wrap" data-aos="fade-up">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-up">
-              <span class="skill">Html/CSS <i class="val">70%</i></span>
-              <div class="progress-bar-wrap" data-aos="fade-up">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div> 
-
-          <div class="col-lg-6" data-aos="fade-up">
-
-            <div class="progress" data-aos="fade-up">
-              <span class="skill">Flutter<i class="val">85%</i></span>
-              <div class="progress-bar-wrap" data-aos="fade-up">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-up">
-              <span class="skill">Asp.Net <i class="val">30%</i></span>
-              <div class="progress-bar-wrap" data-aos="fade-up">
-                <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-up">
-              <span class="skill">Bootstrap <i class="val">55%</i></span>
-              <div class="progress-bar-wrap" data-aos="fade-up">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-up">
-              <span class="skill">Firebase <i class="val">60%</i></span>
-              <div class="progress-bar-wrap" data-aos="fade-up">
-                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
+        <div class="exp-group">
+          <h4>Jira Governance &amp; Backlog</h4>
+          <ul>
+            <li>Manage Jira boards, dashboards, and JQL filters for structured delivery tracking</li>
+            <li>Maintain backlog organisation and prioritise tasks based on urgency and delivery timelines</li>
+            <li>Export and track Jira data using Google Sheets for structured reporting</li>
+          </ul>
         </div>
-
-      </div>
-      
-    </section>
-
-    
-    <section id="resume" class="resume" data-aos="fade-up">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Resume</h2>
-          <p data-aos="fade-up">
-            Where intricate code weaves a tangled web, I find my passion's spark. Each knot unraveled ignites a fire, fueling my journey of learning and growth. But beyond solo quests, innovation thrives in collaboration's embrace. Let's push boundaries together, unleashing ideas that empower and impact. No challenge is too daunting, no hurdle too high when minds meet and hands intertwine. From the ashes of complexity, we'll forge solutions that sing, building something truly amazing, one line of code, one shared dream at a time. </p>
+        <div class="exp-group">
+          <h4>Stakeholder Communication</h4>
+          <ul>
+            <li>Coordinate across client product team, developers, and QA to ensure delivery alignment</li>
+            <li>Prepare and share daily and weekly project status updates with stakeholders</li>
+            <li>Participate in client meetings to clarify requirements and communicate progress</li>
+          </ul>
         </div>
-
-        <div class="row" >
-          <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title" data-aos="fade-up">Sumary</h3>
-            <div class="resume-item pb-0" data-aos="fade-up">
-              <h4 data-aos="fade-up">Anmolpreet Kaur</h4>
-              <p data-aos="fade-up"><em>Innovative and deadline-driven Software Developer with 6 months of experience designing and developing user-centered projects from initial concept to final, polished deliverable.</em></p>
-              <ul>
-                <li data-aos="fade-up">Zirakpur, India</li>
-                <li data-aos="fade-up">+91 6280306207</li>
-                <li data-aos="fade-up">anmolpreet.kaur.official@gmail.com</li>
-              </ul>
-            </div>
-
-            <h3 class="resume-title" data-aos="fade-up">Education</h3>
-            <div class="resume-item" data-aos="fade-up">
-              <h4 data-aos="fade-up">Bachelors of Computer Applications</h4>
-              <h5 data-aos="fade-up">2021 - 2024</h5>
-              <p data-aos="fade-up"><em>Baba Farid College, Deon, Bathinda.</em></p>
-              
-            </div>
-            <div class="resume-item" data-aos="fade-up">
-              <h4 data-aos="fade-up">Higher Secondary Education (12th)</h4>
-              <h5 data-aos="fade-up">2020-2021</h5>
-              <p data-aos="fade-up"><em>Baba Farid Senior Secondary School, Deon, Bathinda.</em></p>
-              
-            </div>
-            <h3 class="resume-title" data-aos="fade-up">Professional Experience</h3>
-            <div class="resume-item" data-aos="fade-up">
-              <h4 data-aos="fade-up">Mobile App Developer</h4>
-              <h5 data-aos="fade-up">November 2023 - March 2024</h5>
-              <p data-aos="fade-up"><em>Baba Farid College -- Software development department</em></p>
-              <p data-aos="fade-up">Developed a Mobile Application targeting the indian population as user.
-                worked as one man army during this internship.
-              </p>
-            </div>
-
-            <!-- <div class="resume-item" data-aos="fade-up">
-              <h4 data-aos="fade-up">Sky-Radar</h4>
-              <h5 data-aos="fade-up">Letting the land owners get notified about drone activities in their property while staying at another location.</h5>
-              
-              <ul>
-                <li data-aos="fade-up">As a part of Sky-Trade ( US Based Remote Company), I am working on a Mobile app.</li>
-                <li data-aos="fade-up">In which we are providing the users/ landowners the facility to get
-                  notified on the drone activities on their land, no matter if their device is
-                  present at that location or not, as the whole process will be going on the
-                  server side</li>
-              </ul>
-            </div> -->
-            
-          </div>
-          <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title" data-aos="fade-up">Projects</h3>
-            <!-- <div class="resume-item" data-aos="fade-up">
-              <h4 data-aos="fade-up">Donor - Squad (Mobile Application)</h4>
-              <h5 data-aos="fade-up">Bridge between blood donors and donees.</h5>
-              
-              <ul>
-                <li data-aos="fade-up">I have Built an automated cross platform application which reduces the time and efforts for finding a donor.</li>
-                <li data-aos="fade-up">Impacting every Indian individual as they can register them as donors and get notified when one needs the blood donation of a similar blood group near them. </li>
-                <li data-aos="fade-up">This will reduce the efforts of the patient's guardians, as they can contact donors by just scanning the qr code available everywhere and sending the blood request (only when a matched donor accepts their request).</li>
-              </ul>
-            </div> -->
-            <div class="resume-item" data-aos="fade-up">
-              <h4 data-aos="fade-up">Portfolio Website</h4>
-              <h5 data-aos="fade-up">Designed my own portfolio to showcase my skills</h5>
-              
-              <ul>
-                <li data-aos="fade-up">It's difficult to explain my self on one page resume on this portfolio you can get more knowledge about me and my skills.
-                  </li>
-              </ul>
-            </div>
-            <div class="resume-item" data-aos="fade-up">
-              <h4 data-aos="fade-up">Exam-Prep (Mobile Application)</h4>
-              <h5 data-aos="fade-up">Providing the facilities of downloading previous
-                question papers of various courses.</h5>
-              
-              <ul>
-                <li data-aos="fade-up">I have Built an cross platform application which helps the students to get access to the previous year question papers of their respective courses.
-                  </li>
-                <li data-aos="fade-up">Impacting Students in Punjab by making it easy to get access to the previous question papers instead of browsing them on the internet.
-                </li>
-              </ul>
-            </div>
-            <div class="resume-item" data-aos="fade-up">
-              <h4 data-aos="fade-up">Visazz Group</h4>
-              <h5 data-aos="fade-up">A responsive website for an immigration business based in Australia</h5>
-              <ul>
-                <li data-aos="fade-up"> Visazz Group provide visa to all over world to migrate in Australia, for better user engagement I have built a website as per Visazz Group's requirements.
-                  </li>
-              </ul>
-            </div>
-            <div class="resume-item" data-aos="fade-up">
-              <h4 data-aos="fade-up">Dream Heights</h4>
-              <h5 data-aos="fade-up">A responsive website for a Real Estate business based in India</h5>
-              
-              <ul>
-                <li data-aos="fade-up">Dream Heights is a real estate business to represent their business online I've Built the website as per their requirements.
-                  </li>
-              </ul>
-            </div>
-          </div>    
-      </div>
-    </section>
-   
-      <!-- ======= Portfolio Section ======= -->
-  <section id="portfolio" class="portfolio section-bg" data-aos="fade-up">
-    <div class="container" data-aos="fade-up">
-
-      <div class="section-title" data-aos="fade-up">
-        <h2 data-aos="fade-up">Portfolio</h2>
-        <!-- <p data-aos="fade-up">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
-      </div>
-
-      <div class="row" data-aos="fade-up">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters" data-aos="fade-up">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-web">Web Apps</li>
-            <li data-filter=".filter-app">Mobile Apps</li>
-            <li data-filter=".filter-card">Achievements</li>
+        <div class="exp-group">
+          <h4>Delivery, UAT &amp; Deployment</h4>
+          <ul>
+            <li>Track feature delivery across development, staging, and production environments</li>
+            <li>Validate workflows and features before client review and deployment</li>
+            <li>Identify functional issues and coordinate resolution with development teams</li>
+            <li>Support deployment coordination and release readiness</li>
           </ul>
         </div>
       </div>
-
-      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap video-container" data-video-src="assets/video/Donor Squad.mp4">
-            <img src="assets/img/portfolio/donor squad.jpg" class="img-fluid" alt="">
-            <div class="portfolio-links">
-              <a href="assets/img/portfolio/donor squad.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Donor Squad (Mobile App)"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
+      <div class="proj-section">
+        <p class="proj-title">Platform Scope — Real Estate SaaS</p>
+        <div class="proj-apps">
+          <span class="proj-app">CRM Web Application</span>
+          <span class="proj-app">Owner Web Portal</span>
+          <span class="proj-app">Tenant Web Portal</span>
+          <span class="proj-app">Android Mobile App</span>
+          <span class="proj-app">iOS Mobile App</span>
+          <span class="proj-app">Property Inspection App</span>
+          <span class="proj-app">Backoffice Admin System</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap video-container" data-video-src="assets/video/Visazz Group.mp4">
-            <img src="assets/img/portfolio/VisazzGroup.png" class="img-fluid" alt="">
-            <div class="portfolio-links">
-              <a href="assets/img/portfolio/VisazzGroup.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Website for Immigration Business in Australia"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-        </div>
+<!-- ══ ACHIEVEMENTS ══ -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="sec-label rv">
+      <span class="sec-num">04 /</span>
+      <h2 class="sec-h">Key Achievements</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="ach-grid rg">
+      <div class="ach-card">
+        <div class="ach-icon">🏗️</div>
+        <h3>Multi-Application SaaS Delivery</h3>
+        <p>Supported end-to-end delivery of 5+ interconnected applications within a single platform — from CRM and portals to native mobile apps and a backoffice system.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🗂️</div>
+        <h3>Jira Governance at Scale</h3>
+        <p>Built structured Jira dashboards, JQL filters, and backlog systems giving the client and dev team consistent, real-time visibility into sprint health and delivery progress.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🤝</div>
+        <h3>Cross-Team Alignment</h3>
+        <p>Bridged communication across client product teams, developers, and QA — ensuring requirements were clearly defined before development, significantly reducing rework cycles.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">✅</div>
+        <h3>UAT &amp; Release Confidence</h3>
+        <p>Owned pre-deployment validation across all application modules, identifying functional gaps early and maintaining consistent release confidence across all environments.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">📊</div>
+        <h3>Structured Reporting Culture</h3>
+        <p>Established daily and weekly status reporting practices that gave stakeholders dependable insight into delivery state across parallel workstreams on a complex platform.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🚀</div>
+        <h3>Full Lifecycle Ownership</h3>
+        <p>Managed the complete delivery lifecycle — from requirement gathering and user story creation through backlog management, sprint coordination, UAT, and deployment tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap video-container" data-video-src="assets/video/Dream Heights.mp4">
-            <img src="assets/img/portfolio/DreamHeights.png" class="img-fluid" alt="">
-            <div class="portfolio-links">
-              <a href="assets/img/portfolio/DreamHeights.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Website for Real Estate Business in India"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-        </div>
+<!-- ══ TOOLS ══ -->
+<section id="tools">
+  <div class="wrap">
+    <div class="sec-label rv">
+      <span class="sec-num">05 /</span>
+      <h2 class="sec-h">Tools &amp; Technologies</h2>
+      <div class="sec-rule"></div>
+    </div>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/Agile.jpg" class="img-fluid" alt="">
-            <div class="portfolio-links">
-              <a href="assets/img/portfolio/Agile.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Participation in BFCET hackathon "><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/infowiz graphic designing.jpg" class="img-fluid" alt="">
-            <div class="portfolio-links">
-              <a href="assets/img/portfolio/infowiz graphic designing.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Graphic Designing Course"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/DAV conference.jpg" class="img-fluid" alt="">
-            <div class="portfolio-links">
-              <a href="assets/img/portfolio/DAV conference.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Participation in national conference"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/BFCET participation.jpg" class="img-fluid" alt="">
-            <div class="portfolio-links">
-              <a href="assets/img/portfolio/BFCET participation.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Participation in BFCET hackathon "><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-        </div>
-
+    <div class="rv">
+      <div class="tools-label-row">
+        <span class="tools-cat">Project Management</span>
+        <div class="tools-cat-line"></div>
+      </div>
+      <div class="tools-row">
+        <span class="tpill">Jira</span>
+        <span class="tpill">JQL</span>
+        <span class="tpill">Jira Dashboards</span>
+        <span class="tpill">Jira Filters</span>
+        <span class="tpill">Backlog Management</span>
+        <span class="tpill">Sprint Planning</span>
+        <span class="tpill">Agile / Scrum</span>
+        <span class="tpill">Kanban</span>
       </div>
 
-    </div>
-  </section> 
-  <!-- End Portfolio Section -->
-    
-  <section id="skills" class="skills section-bg" data-aos="fade-up">
-    <div class="container" data-aos="fade-up">
+      <div class="tools-label-row">
+        <span class="tools-cat">Documentation &amp; Reporting</span>
+        <div class="tools-cat-line"></div>
+      </div>
+      <div class="tools-row">
+        <span class="tpill">Google Sheets</span>
+        <span class="tpill">Google Docs</span>
+        <span class="tpill">ETA Tracking</span>
+        <span class="tpill">Status Reporting</span>
+        <span class="tpill">User Stories</span>
+        <span class="tpill">Acceptance Criteria</span>
+        <span class="tpill">Change Request Tracking</span>
+      </div>
 
-      <div class="section-title" data-aos="fade-up">
-        <h2 data-aos="fade-up">Certifications</h2>
-        <p data-aos="fade-up">Development isn't just a job, it's a burning curiosity. Every problem solved is a puzzle unlocked, every line of code a brushstroke on the canvas of possibility. This portfolio is a testament to my relentless pursuit of learning, a glimpse into the ever-evolving journey. Let's explore the unknown together and bring your ideas to life.
+      <div class="tools-label-row">
+        <span class="tools-cat">Delivery &amp; Technical Awareness</span>
+        <div class="tools-cat-line"></div>
+      </div>
+      <div class="tools-row">
+        <span class="tpill">UAT Validation</span>
+        <span class="tpill">Deployment Coordination</span>
+        <span class="tpill">SaaS Delivery</span>
+        <span class="tpill">Web &amp; Mobile Platforms</span>
+        <span class="tpill">Basic Git</span>
+        <span class="tpill">Release Readiness</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ROLES MARQUEE ══ -->
+<div class="marquee-wrap rv">
+  <div class="marquee-track">
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Business Analyst</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Associate Product Manager</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Product Owner</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Project Manager</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Product Analyst</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Remote &amp; Hybrid</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>SaaS Delivery</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Agile Expert</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Business Analyst</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Associate Product Manager</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Product Owner</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Project Manager</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Product Analyst</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Remote &amp; Hybrid</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>SaaS Delivery</span></div>
+    <div class="marquee-item"><div class="marquee-dot"></div><span>Agile Expert</span></div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-label rv">
+      <span class="sec-num">06 /</span>
+      <h2 class="sec-h">Get In Touch</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-left rv">
+        <h2>Open to <em>remote</em> opportunities worldwide</h2>
+        <p>
+          If you're looking for a structured, communication-focused Project Manager, Business Analyst, or Product Owner who can hit the ground running — let's talk.
         </p>
-      </div>
-      <ul>
-        <li data-aos="fade-up">Class Representative.</li>
-        <li data-aos="fade-up">SIH 2023 internal hackathon winner(Team Leader).</li>
-        <li data-aos="fade-up">Certification in Jira Agile project management.</li>
-        <li data-aos="fade-up">Participation in the BFCET hackathon.</li>
-        <li data-aos="fade-up">Participant in SERB-DST sponsored NATIONAL <br>CONFERENCE on "COMPUTATIONAL TECHNIQUES & MATHEMATICAL MODELING.</li>
-      </ul>
-
-    </div>
-    
-  </section>
-
-    <section id="contact" class="contact" data-aos="fade-up">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2 data-aos="fade-up">Contact</h2>
-          <p data-aos="fade-up">
-            Tired of code that's more knot than magic? Let's build something amazing together! As a passionate developer with a knack for solving puzzles and crafting user-friendly wonders, I'm eager to collaborate. Employers seeking a spark of innovation, explore my work and see how I can empower your team. Clients with dreams bigger than the code itself, let's turn your vision into reality. Contact me today together, we can unlock the true potential of software development!
-          </p>
+        <p>
+          I bring clarity to complex delivery environments, keep teams aligned, and ensure requirements are never lost in translation between business and engineering.
+        </p>
+        <div class="avail-box">
+          <h4>Currently Available</h4>
+          <p>Open to full-time remote roles, contract engagements, and freelance project work. Fast response guaranteed.</p>
         </div>
-
-        
-
-          <div class="col-lg-6 d-flex align-items-stretch " data-aos="fade-up">
-            <div class="info" data-aos="fade-up">
-              <div class="address" data-aos="fade-up">
-                <i class="bi bi-geo-alt" data-aos="fade-up"></i>
-                <h4 data-aos="fade-up">Location:</h4>
-                <p data-aos="fade-up">Zirakpur, India</p>
-              </div>
-
-              <div class="email" data-aos="fade-up">
-                <i class="bi bi-envelope" data-aos="fade-up"></i>
-                <h4 data-aos="fade-up">Email:</h4>
-                <p data-aos="fade-up">anmolpreet.kaur.official@gmail.com</p>
-              </div>
-
-              <div class="phone" data-aos="fade-up">
-                <i class="bi bi-phone" data-aos="fade-up"></i>
-                <h4 data-aos="fade-up">Call:</h4>
-                <p data-aos="fade-up">+91 6280306207</p>
-              </div>
-            </div>
-
+      </div>
+      <div class="contact-right rg">
+        <a href="mailto:anmolpreet.kaur.official@gmail.com" class="c-link">
+          <div class="c-icon">✉️</div>
+          <div class="c-info">
+            <div class="c-lbl">Email</div>
+            <div class="c-val">anmolpreet.kaur.official@gmail.com</div>
           </div>
-        </section>
-  </main>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+          <span class="c-arr">→</span>
+        </a>
+        <a href="https://linkedin.com/in/anmolpreet-projectmanager" target="_blank" rel="noopener" class="c-link">
+          <div class="c-icon">💼</div>
+          <div class="c-info">
+            <div class="c-lbl">LinkedIn</div>
+            <div class="c-val">linkedin.com/in/anmolpreet-projectmanager</div>
+          </div>
+          <span class="c-arr">→</span>
+        </a>
+        <div class="c-link" style="cursor:default">
+          <div class="c-icon">📍</div>
+          <div class="c-info">
+            <div class="c-lbl">Based In</div>
+            <div class="c-val">Mohali, Punjab, India — Remote Worldwide</div>
+          </div>
+        </div>
+        <div class="c-link" style="cursor:default">
+          <div class="c-icon">🎯</div>
+          <div class="c-info">
+            <div class="c-lbl">Target Roles</div>
+            <div class="c-val">BA · APM · Product Owner · Project Manager</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+<!-- ══ FOOTER ══ -->
+<footer>
+  <span class="foot-logo">Anmolpreet Kaur</span>
+  <p>© 2025 · All rights reserved</p>
+  <p>Remote-first · Worldwide</p>
+</footer>
 
-  
-  <script src="assets/js/main.js"></script>
+<script>
+/* ── Custom Cursor ── */
+const cur = document.getElementById('cur');
+const curR = document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+function animCursor(){
+  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+  curR.style.left=rx+'px'; curR.style.top=ry+'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
 
+/* ── Canvas Particles ── */
+(function(){
+  const c=document.getElementById('bg');
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;init()}
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  function init(){
+    pts=[];
+    const n=Math.min(80,Math.floor(W*H/18000));
+    for(let i=0;i<n;i++) pts.push({
+      x:rnd(0,W),y:rnd(0,H),
+      vx:rnd(-.25,.25),vy:rnd(-.25,.25),
+      r:rnd(1,2.2),o:rnd(.15,.55)
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // connections
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<130){
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(96,165,250,${.12*(1-d/130)})`;
+          ctx.lineWidth=.7;
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    // dots
+    pts.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(96,165,250,${p.o})`;
+      ctx.fill();
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);
+  resize();
+  draw();
+})();
+
+/* ── Sticky Nav ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('stuck',window.scrollY>50);
+  // progress bar
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('progress').style.width=pct+'%';
+  // back to top
+  document.getElementById('btt').classList.toggle('show',window.scrollY>400);
+});
+
+/* ── Intersection Observer ── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('.rv,.rg').forEach(el=>io.observe(el));
+
+/* ── Active nav link ── */
+const secs=document.querySelectorAll('section[id]');
+const nlinks=document.querySelectorAll('.n-links a');
+const sio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      nlinks.forEach(a=>{a.style.color='';a.style.fontWeight=''});
+      const a=document.querySelector(`.n-links a[href="#${e.target.id}"]`);
+      if(a){a.style.color='var(--white)'}
+    }
+  });
+},{threshold:.35});
+secs.forEach(s=>sio.observe(s));
+
+/* ── Cursor hover enlarge ── */
+document.querySelectorAll('a,button,.acard,.scard,.ach-card,.tpill').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cur.style.width='5px';cur.style.height='5px';
+    curR.style.width='50px';curR.style.height='50px';
+    curR.style.borderColor='var(--blue-hi)';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cur.style.width='8px';cur.style.height='8px';
+    curR.style.width='30px';curR.style.height='30px';
+    curR.style.borderColor='rgba(96,165,250,.45)';
+  });
+});
+
+/* ── Counter animation on stat numbers ── */
+function animCount(el,end,dur,suffix=''){
+  let start=0,step=end/60;
+  const t=setInterval(()=>{
+    start+=step;
+    if(start>=end){start=end;clearInterval(t)}
+    el.textContent=Math.floor(start)+(suffix||'');
+  },dur/60);
+}
+const statIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.hs-num').forEach(n=>{
+        const txt=n.textContent;
+        if(txt.includes('+')){animCount(n,parseInt(txt),800,'+')}
+        else if(txt.includes('%')){animCount(n,parseInt(txt),1000,'%')}
+      });
+      statIO.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('#hero').forEach(s=>statIO.observe(s));
+</script>
 </body>
-
 </html>
