@@ -23,6 +23,7 @@
   </defs>
 </svg>
 <canvas id="bgCanvas" aria-hidden="true"></canvas>
+<canvas id="particlesCanvas" aria-hidden="true"></canvas>
 <div class="progress-bar" id="progressBar"></div>
 <div class="cursor-glow" id="cursorGlow"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -65,7 +66,6 @@
 <!-- ══════════════ HERO ══════════════ -->
 <header id="hero" class="hero">
   <div class="hero-shapes" aria-hidden="true">
-    <canvas id="particlesCanvas"></canvas>
     <div class="shape shape-a"></div>
     <div class="shape shape-b"></div>
     <div class="shape shape-c"></div>
@@ -359,21 +359,21 @@
         tell the truth, blockers explained in plain terms, expectations
         managed before they become disappointments.</p>
       </div>
-      <div class="bento-card reveal" style="--i:1">
+      <div class="bento-card bento-wide reveal" style="--i:1">
         <div class="bento-icon">🚀</div>
         <h3>Release &amp; UAT Ownership</h3>
         <p>I stay involved from development through staging to production,
         validating against acceptance criteria rather than handing off
         after the BA phase and disappearing.</p>
       </div>
-      <div class="bento-card reveal" style="--i:2">
+      <div class="bento-card reveal" style="--i:0">
         <div class="bento-icon">⚙️</div>
         <h3>Workflow Automation</h3>
         <p>Jira dashboards and JQL views built to answer a specific
         question, not to look busy. If a workflow needs three clicks to
         tell you something obvious, it's worth fixing.</p>
       </div>
-      <div class="bento-card bento-wide reveal" style="--i:1">
+      <div class="bento-card bento-full reveal" style="--i:2">
         <div class="bento-icon">🧠</div>
         <h3>AI-Enabled Documentation</h3>
         <p>AI tools handle first drafts of specs and status docs reasonably
