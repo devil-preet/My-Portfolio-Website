@@ -1,0 +1,11 @@
+/* TEAM */
+Owner: Anmolpreet Kaur
+Role: Technical Project Manager, Business Analyst
+Location: Mohali, Punjab, India
+LinkedIn: https://linkedin.com/in/anmolpreet-projectmanager
+Email: anmolpreet.kaur.official@gmail.com
+
+/* SITE */
+Last update: 2026/07/24
+Language: English
+Doctype: HTML5

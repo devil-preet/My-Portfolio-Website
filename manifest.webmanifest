@@ -1,0 +1,30 @@
+{
+  "name": "Anmolpreet Kaur — Technical Project Manager",
+  "short_name": "Anmolpreet Kaur",
+  "description": "Anmolpreet Kaur — Technical Project Manager specialising in requirements engineering, business analysis and cross-functional software delivery.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#05070A",
+  "theme_color": "#05070A",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
